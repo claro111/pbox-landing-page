@@ -26,19 +26,19 @@ git push -u origin main
 
 ### Step 2: Import to Vercel
 1. Go to https://vercel.com/dashboard
-2. Click **"Add New..."** → **"Project"**
+2. Click "Add New..." then "Project"
 3. Import your Git repository
 4. Vercel will auto-detect the Vite framework
 
 ### Step 3: Configure Project (Auto-detected)
 Vercel should automatically detect these settings:
-- **Framework Preset:** Vite
-- **Build Command:** `npm run build`
-- **Output Directory:** `dist`
-- **Install Command:** `npm install`
+- Framework Preset: Vite
+- Build Command: `npm run build`
+- Output Directory: `dist`
+- Install Command: `npm install`
 
 ### Step 4: Deploy
-1. Click **"Deploy"**
+1. Click "Deploy"
 2. Wait for the build to complete (2-3 minutes)
 3. Your site will be live at `https://your-project-name.vercel.app`
 
@@ -66,11 +66,11 @@ vercel --prod
 ```
 
 Follow the prompts:
-- **Set up and deploy?** → Yes
-- **Which scope?** → Select your account
-- **Link to existing project?** → No (first time) or Yes (subsequent deploys)
-- **Project name?** → pbox-landing-page (or your preferred name)
-- **Directory?** → ./ (current directory)
+- Set up and deploy? Yes
+- Which scope? Select your account
+- Link to existing project? No (first time) or Yes (subsequent deploys)
+- Project name? pbox-landing-page (or your preferred name)
+- Directory? ./ (current directory)
 
 ---
 
@@ -80,7 +80,7 @@ If you need to add environment variables:
 
 ### Via Dashboard:
 1. Go to your project in Vercel Dashboard
-2. Click **Settings** → **Environment Variables**
+2. Click Settings then Environment Variables
 3. Add your variables
 
 ### Via CLI:
@@ -94,18 +94,18 @@ vercel env add VARIABLE_NAME
 
 ### Step 1: Add Domain in Vercel
 1. Go to your project in Vercel Dashboard
-2. Click **Settings** → **Domains**
+2. Click Settings then Domains
 3. Add your custom domain (e.g., `pboxconstruction.com`)
 
 ### Step 2: Configure DNS
 Add these records to your domain provider:
 
-**For root domain (pboxconstruction.com):**
+For root domain (pboxconstruction.com):
 - Type: `A`
 - Name: `@`
 - Value: `76.76.21.21`
 
-**For www subdomain:**
+For www subdomain:
 - Type: `CNAME`
 - Name: `www`
 - Value: `cname.vercel-dns.com`
@@ -119,19 +119,19 @@ Add these records to your domain provider:
 ## Automatic Deployments
 
 Once connected to Git:
-- **Production:** Every push to `main` branch deploys to production
-- **Preview:** Every push to other branches creates a preview deployment
-- **Pull Requests:** Automatic preview deployments for PRs
+- Production: Every push to `main` branch deploys to production
+- Preview: Every push to other branches creates a preview deployment
+- Pull Requests: Automatic preview deployments for PRs
 
 ---
 
 ## Build Optimization
 
 The project is already optimized with:
-- ✅ Code splitting
-- ✅ Asset optimization
-- ✅ Lazy loading
-- ✅ Production build configuration
+- Code splitting
+- Asset optimization
+- Lazy loading
+- Production build configuration
 
 ---
 
@@ -158,14 +158,14 @@ If you get Node version errors, add to `package.json`:
 
 ## Post-Deployment Checklist
 
-- [ ] Test all pages (Home, About, Projects, Contact)
-- [ ] Test navigation and routing
-- [ ] Test contact form
-- [ ] Test on mobile devices
-- [ ] Check Google Maps embed
-- [ ] Verify logo displays correctly
-- [ ] Test all links and buttons
-- [ ] Check performance with Lighthouse
+- Test all pages (Home, About, Projects, Contact)
+- Test navigation and routing
+- Test contact form
+- Test on mobile devices
+- Check Google Maps embed
+- Verify logo displays correctly
+- Test all links and buttons
+- Check performance with Lighthouse
 
 ---
 

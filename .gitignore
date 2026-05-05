@@ -26,6 +26,10 @@ coverage
 *_SUMMARY.md
 *_CHECKLIST.md
 
+# Kiro files
+.kiro/
+*.kiro
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
