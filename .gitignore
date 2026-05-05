@@ -7,10 +7,24 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependencies
 node_modules
+
+# Build output
 dist
 dist-ssr
 *.local
+
+# Test output
+coverage
+*.lcov
+
+# Temporary files
+*.tmp
+*.temp
+*_AUDIT.md
+*_SUMMARY.md
+*_CHECKLIST.md
 
 # Editor directories and files
 .vscode/*
@@ -22,3 +36,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# OS files
+Thumbs.db
+.DS_Store

@@ -21,9 +21,9 @@ const Button: React.FC<ButtonProps> = ({
 }) => {
   // Variant styles
   const variantClasses = {
-    primary: 'bg-[#E10600] text-white hover:bg-[#B30500] active:bg-[#8A0400]',
+    primary: 'bg-[#E01A4F] text-white hover:bg-[#B30500] active:bg-[#8A0400]',
     secondary:
-      'bg-white text-[#E10600] border-2 border-[#E10600] hover:bg-[#E10600] hover:text-white',
+      'bg-white text-[#E01A4F] border-2 border-[#E01A4F] hover:bg-[#E01A4F] hover:text-white',
     outline:
       'bg-transparent text-[#111827] border-2 border-[#1F2937] hover:bg-[#1F2937] hover:text-white',
   }
@@ -59,3 +59,5 @@ const Button: React.FC<ButtonProps> = ({
 }
 
 export default Button
+
+

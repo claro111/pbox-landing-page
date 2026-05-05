@@ -41,8 +41,8 @@ const Input: React.FC<InputProps> = ({
     duration-300
     focus:outline-none
     focus:ring-2
-    focus:ring-[#E10600]
-    ${error ? 'border-red-500 focus:border-red-500' : 'border-gray-300 focus:border-[#E10600]'}
+    focus:ring-[#E01A4F]
+    ${error ? 'border-red-500 focus:border-red-500' : 'border-gray-300 focus:border-[#E01A4F]'}
   `
     .trim()
     .replace(/\s+/g, ' ')
@@ -107,3 +107,5 @@ const Input: React.FC<InputProps> = ({
 }
 
 export default Input
+
+

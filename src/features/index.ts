@@ -12,3 +12,4 @@ export { Testimonial } from './testimonial'
 export { Contact } from './contact'
 export { CTABanner } from './cta'
 export { Footer } from './footer'
+

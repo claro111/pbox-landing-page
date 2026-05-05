@@ -3,145 +3,137 @@ import { motion, AnimatePresence } from 'framer-motion'
 import useInView from '../../shared/hooks/useInView'
 import { PROJECTS } from '../../shared/utils/constants'
 
-type FilterCategory = 'all' | 'acrylic-signage' | 'panaflex-signage' | 'stainless-signage' | 'van-wrap' | 'wall-mural' | 'billboard'
+type FilterCategory =
+  | 'all'
+  | 'modular-kitchen'
+  | 'fit-out'
+  | 'residential'
+  | 'condo-renovation'
+  | 'mall-kiosk'
+  | 'office-furniture'
 
 const Projects: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<FilterCategory>('all')
-  const [ref, isInView] = useInView({ threshold: 0.1 })
+  const [ref, isInView] = useInView({ threshold: 0.05 })
 
-  // Filter buttons - NO BRANDING TAB
   const filterButtons: { label: string; value: FilterCategory }[] = [
-    { label: 'All Projects', value: 'all' },
-    { label: 'Acrylic Signage', value: 'acrylic-signage' },
-    { label: 'Panaflex Signage', value: 'panaflex-signage' },
-    { label: 'Stainless Signage', value: 'stainless-signage' },
-    { label: 'Van Wrap', value: 'van-wrap' },
-    { label: 'Wall Mural', value: 'wall-mural' },
-    { label: 'Billboard', value: 'billboard' },
+    { label: 'All', value: 'all' },
+    { label: 'Design', value: 'modular-kitchen' },
+    { label: 'Print', value: 'fit-out' },
+    { label: 'Fabrication', value: 'residential' },
+    { label: 'System Display', value: 'condo-renovation' },
   ]
 
   const filteredProjects =
     activeFilter === 'all'
       ? PROJECTS
-      : PROJECTS.filter(project => project.category === activeFilter)
+      : PROJECTS.filter(p => p.category === activeFilter)
 
   return (
-    <section id="projects" ref={ref} className="py-20 px-4 bg-white">
-      <div className="max-w-7xl mx-auto">
+    <section id="projects" ref={ref} className="relative py-24 bg-white overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        {/* Centered Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6 }}
-          className="mb-12"
+          className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Our<span className="text-red-600"> Premium</span> Projects
-          </h2>
-          <p className="text-lg text-gray-500 max-w-3xl">
-            We transform environments through high-fidelity craft. From massive roadside
-            impact to intricate retail details, explore our portfolio of creative advertising and
-            signage solutions.
+          <p className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 rounded-full text-[#1447E6] text-xs font-black uppercase tracking-widest mb-4">
+            <span className="w-2 h-2 rounded-full bg-[#1447E6]"></span>
+            OUR PORTFOLIO
           </p>
+          <h2
+            id="projects-heading"
+            className="text-4xl md:text-6xl font-black text-gray-900 leading-tight mb-6"
+            style={{ 
+              fontWeight: 900, 
+              letterSpacing: '-0.02em',
+              WebkitTextStroke: '0.5px currentColor'
+            }}
+          >
+            FEATURED PROJECTS
+          </h2>
+          <p className="text-gray-600 text-base leading-relaxed max-w-3xl mx-auto mb-8">
+            Explore our curated showcase of design, print, fabrication, and display solutions. 
+            Every project represents our commitment to impact and precision.
+          </p>
+
+          {/* Filter Buttons */}
+          <div className="flex items-center justify-center gap-3 flex-wrap">
+            <span className="text-gray-500 text-sm font-black uppercase tracking-wider flex items-center gap-2">
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+              </svg>
+              FILTER:
+            </span>
+            {filterButtons.map(btn => (
+              <button
+                key={btn.value}
+                onClick={() => setActiveFilter(btn.value)}
+                className={`px-6 py-2.5 text-xs font-black uppercase tracking-wider transition-all duration-300 rounded-full ${
+                  activeFilter === btn.value
+                    ? 'bg-gray-900 text-white'
+                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                }`}
+                aria-pressed={activeFilter === btn.value}
+              >
+                {btn.label}
+              </button>
+            ))}
+          </div>
         </motion.div>
 
-        {/* Filter Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex flex-wrap gap-3 mb-12"
-          role="group"
-          aria-label="Filter projects by category"
-        >
-          {filterButtons.map(button => (
-            <button
-              key={button.value}
-              onClick={() => setActiveFilter(button.value)}
-              className={`px-8 py-3 rounded-full font-medium transition-all duration-300 ${
-                activeFilter === button.value
-                  ? 'bg-red-600 text-white shadow-lg'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-              }`}
-              aria-pressed={activeFilter === button.value}
-              aria-label={`Filter projects: ${button.label}`}
-            >
-              {button.label}
-            </button>
-          ))}
-        </motion.div>
-
-        {/* Masonry Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-8 gap-4 auto-rows-[200px]">
+        {/* Projects Grid - Simple 3 Column */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <AnimatePresence mode="wait">
-            {filteredProjects.slice(0, 6).map((project, index) => {
-              // Define different sizes for masonry effect
-              const sizes = [
-                'md:col-span-3 lg:col-span-4 md:row-span-2', // Large
-                'md:col-span-3 lg:col-span-2 md:row-span-2', // Medium tall
-                'md:col-span-3 lg:col-span-2 md:row-span-1', // Small
-                'md:col-span-3 lg:col-span-2 md:row-span-1', // Small
-                'md:col-span-3 lg:col-span-4 md:row-span-1', // Wide
-                'md:col-span-3 lg:col-span-2 md:row-span-1', // Small
-              ]
-              
-              return (
-                <motion.div
-                  key={project.id}
-                  layout
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.4, delay: index * 0.05 }}
-                  className={`${sizes[index % sizes.length]} group cursor-pointer overflow-hidden rounded-3xl relative`}
-                  onClick={() => setActiveFilter(project.category as FilterCategory)}
-                >
-                  <div className="w-full h-full overflow-hidden bg-gray-200">
-                    <img
-                      src={project.image}
-                      alt={`${project.title} - ${project.category} project`}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                      <div className="p-6 w-full">
-                        <h3 className="text-lg font-semibold text-white">
-                          {project.title}
-                        </h3>
-                        <p className="text-gray-200 text-sm capitalize mt-1">
-                          {project.category.replace('-', ' ')}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              )
-            })}
+            {filteredProjects.slice(0, 6).map((project, index) => (
+              <motion.div
+                key={project.id}
+                layout
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 20 }}
+                transition={{ duration: 0.4, delay: index * 0.08 }}
+                className="group cursor-pointer overflow-hidden rounded-lg bg-gray-300 aspect-[4/3] flex items-center justify-center relative"
+              >
+                <p className="text-gray-500 text-xs font-semibold uppercase tracking-wider z-10">Project Image</p>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                  <p className="text-white/80 text-xs font-black uppercase tracking-wider mb-1">
+                    {project.category.replace(/-/g, ' ')}
+                  </p>
+                  <h3 className="text-white text-lg font-black">{project.title}</h3>
+                </div>
+              </motion.div>
+            ))}
           </AnimatePresence>
         </div>
 
-        {/* Show All Button */}
-        {filteredProjects.length > 6 && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-center mt-12"
+        {/* View All Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="mt-12 flex justify-center"
+        >
+          <button
+            onClick={() => setActiveFilter('all')}
+            className="group inline-flex items-center gap-3 px-8 py-4 bg-[#1447E6] text-white font-black text-sm uppercase tracking-widest hover:bg-[#E01A4F] transition-all duration-300 rounded-lg"
           >
-            <button 
-              onClick={() => {
-                // Navigate to all projects page - you can implement this later
-                console.log(`Show all ${activeFilter} projects`)
-              }}
-              className="text-gray-900 font-semibold text-lg hover:text-red-600 transition-colors duration-300 flex items-center justify-center gap-2 mx-auto"
-            >
-              Show All {activeFilter !== 'all' ? `${activeFilter.replace('-', ' ')} ` : ''}Projects
-              <span className="text-2xl">→</span>
-            </button>
-          </motion.div>
-        )}
+            View All Projects
+            <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </button>
+        </motion.div>
       </div>
     </section>
   )
 }
 
 export default Projects
+
+
+

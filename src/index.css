@@ -2,7 +2,8 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-primary: #e10600;
+  --color-primary: #E01A4F;
+  --color-navy: #1447E6;
   --color-darkGray: #1f2937;
   --color-lightGray: #f3f4f6;
 
@@ -37,7 +38,7 @@ h6 {
 
 /* Focus visible styles for keyboard navigation */
 *:focus-visible {
-  outline: 3px solid #e10600;
+  outline: 3px solid #1a237e;
   outline-offset: 2px;
 }
 
@@ -45,7 +46,7 @@ button:focus-visible,
 a:focus-visible,
 input:focus-visible,
 textarea:focus-visible {
-  outline: 3px solid #e10600;
+  outline: 3px solid #1a237e;
   outline-offset: 2px;
 }
 
@@ -62,7 +63,7 @@ a,
   left: -9999px;
   z-index: 999;
   padding: 1rem;
-  background-color: #e10600;
+  background-color: #E01A4F;
   color: white;
   text-decoration: none;
   font-weight: 600;

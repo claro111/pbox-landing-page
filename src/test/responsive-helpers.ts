@@ -93,3 +93,4 @@ export const isMobileMenuVisible = (element: HTMLElement | null): boolean => {
     computedStyle.display !== 'none' && computedStyle.visibility !== 'hidden'
   )
 }
+

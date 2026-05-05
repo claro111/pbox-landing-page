@@ -11,3 +11,4 @@ declare function useInView(
 ): [RefObject<HTMLElement>, boolean]
 
 export default useInView
+

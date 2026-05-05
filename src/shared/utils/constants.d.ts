@@ -13,11 +13,11 @@ export interface Service {
 export interface Project {
   id: string
   title: string
-  category: 'acrylic-signage' | 'panaflex-signage' | 'stainless-signage' | 'van-wrap' | 'wall-mural' | 'billboard'
+  category: 'modular-kitchen' | 'fit-out' | 'residential' | 'condo-renovation' | 'mall-kiosk' | 'office-furniture'
   image: string
 }
 
-export interface Machine {
+export interface Tool {
   id: string
   name: string
   image: string
@@ -53,8 +53,14 @@ export interface SocialLink {
   label: string
 }
 
+export interface Certification {
+  label: string
+  icon: string
+}
+
 export const COLORS: {
   primary: string
+  navy: string
   white: string
   black: string
   darkGray: string
@@ -70,10 +76,13 @@ export const BREAKPOINTS: {
 
 export const NAV_LINKS: NavLink[]
 export const SERVICES: Service[]
+export const DESIGN_SERVICES: string[]
 export const PROJECTS: Project[]
-export const MACHINES: Machine[]
+export const TOOLS: Tool[]
 export const ABOUT_CONTENT: AboutContent
 export const TESTIMONIALS: Testimonial[]
 export const TESTIMONIAL: Testimonial
 export const COMPANY_INFO: CompanyInfo
 export const SOCIAL_LINKS: SocialLink[]
+export const CERTIFICATIONS: Certification[]
+

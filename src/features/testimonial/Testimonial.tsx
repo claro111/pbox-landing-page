@@ -44,7 +44,7 @@ const Testimonial: React.FC = () => {
     <section
       id="testimonial"
       ref={ref}
-      className="py-12 px-4 sm:px-6 lg:px-8 bg-[#F9FAFB] overflow-hidden"
+      className="py-12 px-4 sm:px-6 lg:px-8 bg-[#F8F9FF] overflow-hidden"
     >
       <div className="max-w-7xl mx-auto">
         <motion.div
@@ -55,7 +55,7 @@ const Testimonial: React.FC = () => {
         >
           {/* Quote Icon */}
           <div className="flex justify-center">
-            <Quote className="w-12 h-12 text-[#FCA5A5]" aria-hidden="true" />
+            <Quote className="w-12 h-12 text-[#1447E6]/30" aria-hidden="true" />
           </div>
 
           {/* Testimonial Carousel */}
@@ -123,7 +123,7 @@ const Testimonial: React.FC = () => {
                 onClick={() => setCurrentIndex(index)}
                 className={`h-2 rounded-full transition-all duration-300 ${
                   index === currentIndex
-                    ? 'bg-[#E10600] w-8'
+                    ? 'bg-[#1447E6] w-8'
                     : 'bg-gray-300 hover:bg-gray-400 w-2'
                 }`}
                 aria-label={`Go to testimonial ${index + 1}`}
@@ -167,14 +167,13 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
 
       {/* Author Info */}
       <footer className="flex flex-col items-center space-y-2 pt-2">
-        <img
-          src={testimonial.avatar}
-          alt={`${testimonial.author}, ${testimonial.role}`}
-          className={`rounded-full object-cover ${
+        <div
+          className={`rounded-full bg-gray-300 flex items-center justify-center ${
             isActive ? 'w-14 h-14' : 'w-10 h-10'
           }`}
-          loading="lazy"
-        />
+        >
+          <span className="text-gray-500 text-xs font-bold">AVATAR</span>
+        </div>
         <div>
           <cite
             className={`block font-bold not-italic ${
@@ -185,7 +184,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
           </cite>
           <p
             className={`uppercase tracking-wide font-semibold ${
-              isActive ? 'text-xs text-[#E10600]' : 'text-xs text-[#9CA3AF]'
+              isActive ? 'text-xs text-[#1447E6]' : 'text-xs text-[#9CA3AF]'
             }`}
           >
             {testimonial.role}
@@ -201,7 +200,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
               key={i}
               className={`w-4 h-4 ${
                 i < testimonial.rating
-                  ? 'fill-[#E10600] text-[#E10600]'
+                  ? 'fill-[#1447E6] text-[#1447E6]'
                   : 'text-gray-300'
               }`}
               aria-hidden="true"
@@ -214,3 +213,6 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
 }
 
 export default Testimonial
+
+
+

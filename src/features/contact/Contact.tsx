@@ -1,20 +1,21 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Navigation } from 'lucide-react'
-import Input from '../../shared/components/Input'
-import Button from '../../shared/components/Button'
-import { validateContactForm } from '../../shared/utils/validation'
+import { Mail, Phone, MapPin, Clock } from 'lucide-react'
 import useInView from '../../shared/hooks/useInView'
 
 interface ContactFormData {
-  name: string
-  projectType: string
+  fullName: string
+  email: string
+  mobile: string
+  subject: string
   message: string
 }
 
 interface ContactFormErrors {
-  name?: string
-  projectType?: string
+  fullName?: string
+  email?: string
+  mobile?: string
+  subject?: string
   message?: string
 }
 
@@ -22,8 +23,10 @@ const Contact: React.FC = () => {
   const [ref, isInView] = useInView({ threshold: 0.1 })
 
   const [formData, setFormData] = useState<ContactFormData>({
-    name: '',
-    projectType: '',
+    fullName: '',
+    email: '',
+    mobile: '',
+    subject: '',
     message: '',
   })
 
@@ -34,58 +37,43 @@ const Contact: React.FC = () => {
 
   const handleChange = (field: keyof ContactFormData) => (value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }))
-
-    // Clear error for this field when user starts typing
     if (errors[field]) {
       setErrors(prev => {
-        const newErrors = { ...prev }
-        delete newErrors[field]
-        return newErrors
+        const next = { ...prev }
+        delete next[field]
+        return next
       })
     }
   }
 
   const handleBlur = (field: keyof ContactFormData) => () => {
-    // Mark field as touched
     setTouchedFields(prev => new Set(prev).add(field))
-
-    // Validate single field on blur
-    const fieldErrors = validateContactForm({ ...formData })
-    if (fieldErrors[field]) {
-      setErrors(prev => ({ ...prev, [field]: fieldErrors[field] }))
-    }
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-
-    // Mark all fields as touched
-    setTouchedFields(new Set(['name', 'projectType', 'message']))
-
-    // Validate all fields
-    const validationErrors = validateContactForm(formData)
-
+    setTouchedFields(new Set(['fullName', 'email', 'mobile', 'subject', 'message']))
+    
+    // Basic validation
+    const validationErrors: ContactFormErrors = {}
+    if (!formData.fullName.trim()) validationErrors.fullName = 'Full name is required'
+    if (!formData.email.trim()) validationErrors.email = 'Email is required'
+    if (!formData.mobile.trim()) validationErrors.mobile = 'Mobile number is required'
+    if (!formData.subject.trim()) validationErrors.subject = 'Subject is required'
+    if (!formData.message.trim()) validationErrors.message = 'Message is required'
+    
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors)
       return
     }
-
-    // Submit form
+    
     setIsSubmitting(true)
-
     try {
-      // Mock API call - console log form data
       console.log('Form submitted:', formData)
-
-      // Simulate API delay
       await new Promise(resolve => setTimeout(resolve, 500))
-
-      // Show success message
       setSubmitSuccess(true)
-
-      // Reset form after 3 seconds
       setTimeout(() => {
-        setFormData({ name: '', projectType: '', message: '' })
+        setFormData({ fullName: '', email: '', mobile: '', subject: '', message: '' })
         setErrors({})
         setSubmitSuccess(false)
         setTouchedFields(new Set())
@@ -97,205 +85,287 @@ const Contact: React.FC = () => {
     }
   }
 
-  const containerVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, staggerChildren: 0.2 },
-    },
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-  }
-
   return (
-    <section id="contact" ref={ref} className="bg-white">
-      <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
-        {/* Left Column - Content */}
+    <section id="contact" ref={ref} className="bg-white py-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Centered Header */}
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? 'visible' : 'hidden'}
-          className="px-8 md:px-16 lg:px-20 py-16 lg:py-20 flex flex-col justify-center"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
         >
-          {/* Hero Title */}
-          <motion.div variants={itemVariants} className="mb-12">
-            <p className="text-[#E10600] text-sm font-semibold tracking-wider uppercase mb-4">
-              GET IN TOUCH
-            </p>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#111827] leading-tight mb-6">
-              Let's Build Something{' '}
-              <span className="text-[#E10600]">Great</span> Together.
-            </h2>
-            <p className="text-[#6B7280] text-base md:text-lg mb-8">
-              Better yet, see us in person! We love our customers, so feel free
-              to visit during normal business hours.
-            </p>
-          </motion.div>
+          <p className="inline-flex items-center gap-2 px-4 py-2 bg-red-50 rounded-full text-[#E01A4F] text-xs font-black uppercase tracking-widest mb-4">
+            <span className="w-2 h-2 rounded-full bg-[#E01A4F]"></span>
+            GET IN TOUCH
+          </p>
+          <h2
+            className="text-4xl md:text-5xl font-black text-gray-900 leading-tight mb-6"
+            style={{ 
+              fontWeight: 900, 
+              letterSpacing: '-0.02em',
+              WebkitTextStroke: '0.5px currentColor'
+            }}
+          >
+            CONTACT US
+          </h2>
+          <p className="text-gray-600 text-base leading-relaxed max-w-3xl mx-auto">
+            Have a project in mind? We'd love to hear from you. Send us a message and 
+            let's create something monumental together.
+          </p>
+        </motion.div>
 
-          {/* Office Location & Business Hours */}
-          <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            <div>
-              <h3 className="text-xs font-semibold text-[#9CA3AF] uppercase tracking-wider mb-3">
-                OFFICE LOCATION
-              </h3>
-              <p className="font-bold text-[#111827] mb-1">
-                PBOX Creative Advertising
-              </p>
-              <p className="text-[#6B7280] text-sm leading-relaxed">
-                14 M. L. Quezon Street,
-                <br />
-                Marikina,
-                <br />
-                Metro Manila, Philippines
-              </p>
-            </div>
-            <div>
-              <h3 className="text-xs font-semibold text-[#9CA3AF] uppercase tracking-wider mb-3">
-                BUSINESS HOURS
-              </h3>
-              <p className="text-[#111827] mb-1">
-                <span className="inline-block w-2 h-2 bg-green-500 rounded-full mr-2"></span>
-                <span className="font-semibold">Open Today</span>
-              </p>
-              <p className="text-[#6B7280] text-sm">09:00 am – 06:00 pm</p>
-            </div>
-          </motion.div>
+        {/* Two Column Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          
+          {/* Left Column - Contact Information */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <h3 className="text-2xl font-black text-gray-900 mb-8">
+              CONTACT INFORMATION
+            </h3>
 
-          {/* Contact Form */}
-          <motion.div variants={itemVariants}>
-            <div className="flex items-center gap-2 mb-6">
-              <svg
-                className="w-5 h-5 text-[#E10600]"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-              </svg>
-              <h3 className="text-xl font-bold text-[#111827]">
-                Send us a message
-              </h3>
-            </div>
-
-            <form onSubmit={handleSubmit} className="space-y-5" noValidate>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <Input
-                  type="text"
-                  name="name"
-                  label="Your Name"
-                  placeholder="John Doe"
-                  value={formData.name}
-                  onChange={handleChange('name')}
-                  onBlur={handleBlur('name')}
-                  error={touchedFields.has('name') ? errors.name : undefined}
-                  required
-                  className="w-full"
-                />
-
+            <div className="space-y-8 mb-10">
+              {/* Email */}
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center">
+                  <Mail className="w-5 h-5 text-[#1447E6]" />
+                </div>
                 <div>
-                  <label
-                    htmlFor="projectType"
-                    className="block text-sm font-medium text-[#374151] mb-2"
-                  >
-                    Project Type <span className="text-[#E10600]">*</span>
-                  </label>
-                  <select
-                    id="projectType"
-                    name="projectType"
-                    value={formData.projectType}
-                    onChange={e => handleChange('projectType')(e.target.value)}
-                    onBlur={handleBlur('projectType')}
-                    className={`w-full px-4 py-3 border ${
-                      touchedFields.has('projectType') && errors.projectType
-                        ? 'border-red-500'
-                        : 'border-[#D1D5DB]'
-                    } rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E10600] focus:border-transparent transition-all bg-white text-[#111827]`}
-                    required
-                  >
-                    <option value="">Graphic Design</option>
-                    <option value="graphic-design">Graphic Design</option>
-                    <option value="web-development">Web Development</option>
-                    <option value="branding">Branding</option>
-                    <option value="marketing">Marketing</option>
-                    <option value="other">Other</option>
-                  </select>
-                  {touchedFields.has('projectType') && errors.projectType && (
-                    <p className="mt-1 text-sm text-red-500">
-                      {errors.projectType}
-                    </p>
-                  )}
+                  <p className="text-xs font-black text-gray-400 uppercase tracking-wider mb-1">
+                    EMAIL US
+                  </p>
+                  <p className="text-gray-900 font-bold">hello@pboxcreative.com</p>
                 </div>
               </div>
 
-              <div onBlur={handleBlur('message')}>
-                <Input
-                  type="textarea"
-                  name="message"
-                  label="Message"
-                  placeholder="How can we help with your project?"
-                  value={formData.message}
-                  onChange={handleChange('message')}
-                  error={
-                    touchedFields.has('message') ? errors.message : undefined
-                  }
-                  required
-                  className="w-full"
-                />
+              {/* Phone */}
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center">
+                  <Phone className="w-5 h-5 text-[#1447E6]" />
+                </div>
+                <div>
+                  <p className="text-xs font-black text-gray-400 uppercase tracking-wider mb-1">
+                    CALL US
+                  </p>
+                  <p className="text-gray-900 font-bold">+1 (555) 123-4567</p>
+                </div>
               </div>
 
-              <Button
-                variant="primary"
-                size="lg"
-                className="w-full"
-                onClick={() => {}}
+              {/* Address */}
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center">
+                  <MapPin className="w-5 h-5 text-[#1447E6]" />
+                </div>
+                <div>
+                  <p className="text-xs font-black text-gray-400 uppercase tracking-wider mb-1">
+                    VISIT US
+                  </p>
+                  <p className="text-gray-900 font-bold">
+                    14 M. L. Quezon Street, Marikina,<br />
+                    Metro Manila, Philippines
+                  </p>
+                </div>
+              </div>
+
+              {/* Business Hours */}
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center">
+                  <Clock className="w-5 h-5 text-[#1447E6]" />
+                </div>
+                <div>
+                  <p className="text-xs font-black text-gray-400 uppercase tracking-wider mb-1">
+                    BUSINESS HOURS
+                  </p>
+                  <p className="text-gray-900 font-bold">
+                    9:00 AM - 6:00 PM<br />
+                    Monday - Saturday
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Map */}
+            <div className="relative h-64 rounded-lg overflow-hidden">
+              <iframe
+                src="https://www.google.com/maps?q=14+M.+L.+Quezon+Street,+Marikina,+Metro+Manila,+Philippines&output=embed&z=17"
+                width="100%"
+                height="100%"
+                className="border-0"
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="PBOX Construction Location"
+              />
+              <a
+                href="https://www.google.com/maps?q=14+M.+L.+Quezon+Street,+Marikina,+Metro+Manila,+Philippines"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute top-3 right-3 px-3 py-1.5 bg-white text-[#1447E6] text-xs font-black rounded shadow-lg hover:bg-gray-50 transition-colors"
               >
-                {isSubmitting ? 'Sending...' : 'Submit Inquiry'}
-              </Button>
+                Open in Maps ↗
+              </a>
+            </div>
+          </motion.div>
+
+          {/* Right Column - Contact Form */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="bg-gray-50 p-8 rounded-lg"
+          >
+            <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+              {/* Full Name */}
+              <div>
+                <label htmlFor="fullName" className="block text-xs font-black text-gray-700 uppercase tracking-wider mb-2">
+                  FULL NAME
+                </label>
+                <input
+                  type="text"
+                  id="fullName"
+                  name="fullName"
+                  placeholder="John Doe"
+                  value={formData.fullName}
+                  onChange={e => handleChange('fullName')(e.target.value)}
+                  onBlur={handleBlur('fullName')}
+                  className={`w-full px-4 py-3 border ${
+                    touchedFields.has('fullName') && errors.fullName
+                      ? 'border-red-500'
+                      : 'border-gray-300'
+                  } rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1447E6] focus:border-transparent transition-all bg-white`}
+                />
+                {touchedFields.has('fullName') && errors.fullName && (
+                  <p className="mt-1 text-sm text-red-500">{errors.fullName}</p>
+                )}
+              </div>
+
+              {/* Email */}
+              <div>
+                <label htmlFor="email" className="block text-xs font-black text-gray-700 uppercase tracking-wider mb-2">
+                  EMAIL ADDRESS
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="john@example.com"
+                  value={formData.email}
+                  onChange={e => handleChange('email')(e.target.value)}
+                  onBlur={handleBlur('email')}
+                  className={`w-full px-4 py-3 border ${
+                    touchedFields.has('email') && errors.email
+                      ? 'border-red-500'
+                      : 'border-gray-300'
+                  } rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1447E6] focus:border-transparent transition-all bg-white`}
+                />
+                {touchedFields.has('email') && errors.email && (
+                  <p className="mt-1 text-sm text-red-500">{errors.email}</p>
+                )}
+              </div>
+
+              {/* Mobile */}
+              <div>
+                <label htmlFor="mobile" className="block text-xs font-black text-gray-700 uppercase tracking-wider mb-2">
+                  MOBILE NUMBER
+                </label>
+                <input
+                  type="tel"
+                  id="mobile"
+                  name="mobile"
+                  placeholder="+63 900 000 0000"
+                  value={formData.mobile}
+                  onChange={e => handleChange('mobile')(e.target.value)}
+                  onBlur={handleBlur('mobile')}
+                  className={`w-full px-4 py-3 border ${
+                    touchedFields.has('mobile') && errors.mobile
+                      ? 'border-red-500'
+                      : 'border-gray-300'
+                  } rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1447E6] focus:border-transparent transition-all bg-white`}
+                />
+                {touchedFields.has('mobile') && errors.mobile && (
+                  <p className="mt-1 text-sm text-red-500">{errors.mobile}</p>
+                )}
+              </div>
+
+              {/* Subject */}
+              <div>
+                <label htmlFor="subject" className="block text-xs font-black text-gray-700 uppercase tracking-wider mb-2">
+                  SUBJECT
+                </label>
+                <select
+                  id="subject"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={e => handleChange('subject')(e.target.value)}
+                  onBlur={handleBlur('subject')}
+                  className={`w-full px-4 py-3 border ${
+                    touchedFields.has('subject') && errors.subject
+                      ? 'border-red-500'
+                      : 'border-gray-300'
+                  } rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1447E6] focus:border-transparent transition-all bg-white`}
+                >
+                  <option value="">General Inquiry</option>
+                  <option value="construction">Construction Services</option>
+                  <option value="furniture">Furniture & Fixtures</option>
+                  <option value="design">Design Services</option>
+                  <option value="quote">Request a Quote</option>
+                  <option value="other">Other</option>
+                </select>
+                {touchedFields.has('subject') && errors.subject && (
+                  <p className="mt-1 text-sm text-red-500">{errors.subject}</p>
+                )}
+              </div>
+
+              {/* Message */}
+              <div>
+                <label htmlFor="message" className="block text-xs font-black text-gray-700 uppercase tracking-wider mb-2">
+                  MESSAGE
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows={5}
+                  placeholder="Tell us about your project..."
+                  value={formData.message}
+                  onChange={e => handleChange('message')(e.target.value)}
+                  onBlur={handleBlur('message')}
+                  className={`w-full px-4 py-3 border ${
+                    touchedFields.has('message') && errors.message
+                      ? 'border-red-500'
+                      : 'border-gray-300'
+                  } rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1447E6] focus:border-transparent transition-all bg-white resize-none`}
+                />
+                {touchedFields.has('message') && errors.message && (
+                  <p className="mt-1 text-sm text-red-500">{errors.message}</p>
+                )}
+              </div>
+
+              {/* Submit Button */}
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full px-8 py-4 bg-[#E01A4F] text-white font-black text-sm uppercase tracking-widest hover:bg-[#1447E6] transition-all duration-300 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isSubmitting ? 'SENDING...' : 'SEND MESSAGE'}
+              </button>
 
               {submitSuccess && (
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="p-4 bg-green-100 border border-green-400 text-green-700 rounded-xl"
+                  className="p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg text-center"
                   role="alert"
                 >
-                  Thank you! Your message has been sent successfully.
+                  Thank you! We'll be in touch shortly.
                 </motion.div>
               )}
             </form>
           </motion.div>
-        </motion.div>
-
-        {/* Right Column - Map */}
-        <div className="relative bg-[#E5E7EB] min-h-[400px] lg:min-h-screen">
-          <iframe
-            src="https://www.google.com/maps?q=14+M.+L.+Quezon+Street,+Marikina,+Metro+Manila,+Philippines&output=embed&z=17"
-            width="100%"
-            height="100%"
-            className="absolute inset-0 border-0"
-            allowFullScreen
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            title="PBOX Creative Advertising Location"
-            aria-label="Google Maps showing PBOX Creative Advertising location at 14 M. L. Quezon Street, Marikina, Metro Manila"
-          />
-
-          {/* Get Directions Button */}
-          <div className="absolute top-6 right-6 z-10">
-            <a
-              href="https://www.google.com/maps/dir/?api=1&destination=14+M.+L.+Quezon+Street,+Marikina,+Metro+Manila,+Philippines"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-3 bg-[#1F2937] text-white rounded-full font-medium hover:bg-[#111827] transition-colors shadow-lg"
-            >
-              <Navigation className="w-4 h-4" />
-              Get Directions
-            </a>
-          </div>
         </div>
       </div>
     </section>
@@ -303,3 +373,6 @@ const Contact: React.FC = () => {
 }
 
 export default Contact
+
+
+

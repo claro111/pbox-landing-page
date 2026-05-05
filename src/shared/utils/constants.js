@@ -1,5 +1,6 @@
 export const COLORS = {
-  primary: '#E10600',
+  primary: '#E01A4F',
+  navy: '#1447E6',
   white: '#FFFFFF',
   black: '#111827',
   darkGray: '#1F2937',
@@ -14,309 +15,250 @@ export const BREAKPOINTS = {
 }
 
 export const NAV_LINKS = [
-  { label: 'Home', href: 'hero' },
-  { label: 'Projects', href: 'projects' },
-  { label: 'About', href: 'about' },
-  { label: 'Contact', href: 'contact' },
+  { label: 'Home', href: '/' },
+  { label: 'Projects', href: '/projects' },
+  { label: 'About', href: '/about' },
+  { label: 'Contact', href: '/contact' },
 ]
 
 export const SERVICES = [
   {
-    id: 'digital-marketing',
-    icon: 'TrendingUp',
-    title: 'Digital Marketing',
+    id: 'modular-kitchen',
+    icon: 'ChefHat',
+    title: 'Modular Kitchen & Cabinet',
     description:
-      'Strategic digital campaigns that amplify your brand presence and drive measurable results across all platforms.',
+      'Custom-designed modular kitchens and cabinets built to maximize space, functionality, and aesthetics for any home or commercial setting.',
   },
   {
-    id: 'large-format-print',
-    icon: 'Printer',
-    title: 'Large Format Print',
+    id: 'fit-out',
+    icon: 'Building2',
+    title: 'Fit Out Construction',
     description:
-      'High-quality large format printing for banners, billboards, and signage that makes your brand impossible to miss.',
+      'Complete interior fit-out services for commercial and residential spaces — from bare shell to fully finished, move-in ready environments.',
   },
   {
-    id: 'retail-branding',
+    id: 'residential',
+    icon: 'Home',
+    title: 'Residential House',
+    description:
+      'Full-scale residential construction and renovation, delivering quality homes built to your specifications and budget.',
+  },
+  {
+    id: 'condo-renovation',
+    icon: 'Layers',
+    title: 'Condo Full or Minor Renovation',
+    description:
+      'Comprehensive condominium renovation services — from full gut renovations to minor upgrades that refresh your living space.',
+  },
+  {
+    id: 'mall-kiosk',
     icon: 'Store',
-    title: 'Retail Branding',
+    title: 'Mall Kiosk',
     description:
-      'Complete retail branding solutions from storefront design to in-store displays that create memorable shopping experiences.',
+      'Eye-catching, durable mall kiosk construction designed to attract customers and maximize your retail presence.',
   },
+  {
+    id: 'office-furniture',
+    icon: 'Briefcase',
+    title: 'Office Furniture & Partition',
+    description:
+      'Custom office furniture fabrication and partition systems that create productive, professional work environments.',
+  },
+  {
+    id: 'painting',
+    icon: 'Paintbrush',
+    title: 'Painting Works',
+    description:
+      'Professional interior and exterior painting services using premium paints for a flawless, long-lasting finish.',
+  },
+  {
+    id: 'electrical',
+    icon: 'Zap',
+    title: 'Electrical Works',
+    description:
+      'Licensed electrical installation, wiring, and maintenance services ensuring safety and compliance with all standards.',
+  },
+  {
+    id: 'space-planning',
+    icon: 'LayoutDashboard',
+    title: 'Space Planning & Conceptual Frameworks',
+    description:
+      'Strategic space planning and conceptual design frameworks that optimize flow, function, and visual impact.',
+  },
+]
+
+export const DESIGN_SERVICES = [
+  '3D Mock Up Drawings',
+  '3D Model Presentations',
+  'Bill of Materials',
+  'Bill of Quantities',
+  'Signed & Sealed Structural Plans for Building Permit',
+  'Overall Design Proposal for Residential, Commercial & Industrial Projects',
 ]
 
 export const PROJECTS = [
-  // Acrylic Signage
   {
-    id: 'acrylic-1',
-    title: 'Hideout',
-    category: 'acrylic-signage',
-    image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&h=600&fit=crop',
+    id: 'kitchen-1',
+    title: 'Modern Modular Kitchen',
+    category: 'modular-kitchen',
+    image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop',
   },
   {
-    id: 'acrylic-2',
-    title: 'Skytech',
-    category: 'acrylic-signage',
+    id: 'kitchen-2',
+    title: 'White Minimalist Kitchen',
+    category: 'modular-kitchen',
+    image: 'https://images.unsplash.com/photo-1565538810643-b5bdb714032a?w=800&h=600&fit=crop',
+  },
+  {
+    id: 'kitchen-3',
+    title: 'Contemporary Kitchen Design',
+    category: 'modular-kitchen',
+    image: 'https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=800&h=600&fit=crop',
+  },
+  {
+    id: 'fitout-1',
+    title: 'Commercial Office Fit Out',
+    category: 'fit-out',
     image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop',
   },
   {
-    id: 'acrylic-3',
-    title: 'Enjoy Life',
-    category: 'acrylic-signage',
-    image: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&h=600&fit=crop',
-  },
-  {
-    id: 'acrylic-4',
-    title: 'Swirldream',
-    category: 'acrylic-signage',
-    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop',
-  },
-  {
-    id: 'acrylic-5',
-    title: 'Forge',
-    category: 'acrylic-signage',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
-  },
-  {
-    id: 'acrylic-6',
-    title: 'Cuddly Care',
-    category: 'acrylic-signage',
-    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop',
-  },
-  // Panaflex Signage
-  {
-    id: 'panaflex-1',
-    title: 'Enjoy Life Store',
-    category: 'panaflex-signage',
-    image: 'https://images.unsplash.com/photo-1558655146-d09347e92766?w=800&h=600&fit=crop',
-  },
-  {
-    id: 'panaflex-2',
-    title: 'Retail Store',
-    category: 'panaflex-signage',
+    id: 'fitout-2',
+    title: 'Retail Store Fit Out',
+    category: 'fit-out',
     image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop',
   },
   {
-    id: 'panaflex-3',
-    title: 'Shop Front',
-    category: 'panaflex-signage',
-    image: 'https://images.unsplash.com/photo-1555421689-d68471e189f2?w=800&h=600&fit=crop',
-  },
-  {
-    id: 'panaflex-4',
-    title: 'Business Sign',
-    category: 'panaflex-signage',
-    image: 'https://images.unsplash.com/photo-1556761175-4b46a572b786?w=800&h=600&fit=crop',
-  },
-  // Stainless Signage
-  {
-    id: 'stainless-1',
-    title: 'One Octagon Center',
-    category: 'stainless-signage',
-    image: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&h=600&fit=crop',
-  },
-  {
-    id: 'stainless-2',
-    title: 'Corporate Office',
-    category: 'stainless-signage',
-    image: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=800&h=600&fit=crop',
-  },
-  {
-    id: 'stainless-3',
-    title: 'Building Entrance',
-    category: 'stainless-signage',
-    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop',
-  },
-  {
-    id: 'stainless-4',
-    title: 'Lobby Sign',
-    category: 'stainless-signage',
-    image: 'https://images.unsplash.com/photo-1497366412874-3415097a27e7?w=800&h=600&fit=crop',
-  },
-  // Van Wrap
-  {
-    id: 'vanwrap-1',
-    title: 'JoyRide Superapp',
-    category: 'van-wrap',
-    image: 'https://images.unsplash.com/photo-1519003722824-194d4455a60c?w=800&h=600&fit=crop',
-  },
-  {
-    id: 'vanwrap-2',
-    title: 'Delivery Van',
-    category: 'van-wrap',
-    image: 'https://images.unsplash.com/photo-1527192491265-7e15c55b1ed2?w=800&h=600&fit=crop',
-  },
-  {
-    id: 'vanwrap-3',
-    title: 'Business Fleet',
-    category: 'van-wrap',
-    image: 'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=800&h=600&fit=crop',
-  },
-  {
-    id: 'vanwrap-4',
-    title: 'Mobile Advertising',
-    category: 'van-wrap',
-    image: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&h=600&fit=crop',
-  },
-  // Wall Mural
-  {
-    id: 'mural-1',
-    title: 'Double Cheese Donut',
-    category: 'wall-mural',
-    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop',
-  },
-  {
-    id: 'mural-2',
-    title: 'Restaurant Interior',
-    category: 'wall-mural',
+    id: 'fitout-3',
+    title: 'Restaurant Interior Fit Out',
+    category: 'fit-out',
     image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop',
   },
   {
-    id: 'mural-3',
-    title: 'Cafe Wall Art',
-    category: 'wall-mural',
-    image: 'https://images.unsplash.com/photo-1559329007-40df8a9345d8?w=800&h=600&fit=crop',
+    id: 'residential-1',
+    title: 'Modern Residential Home',
+    category: 'residential',
+    image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=600&fit=crop',
   },
   {
-    id: 'mural-4',
-    title: 'Store Decoration',
-    category: 'wall-mural',
-    image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=800&h=600&fit=crop',
-  },
-  // Billboard
-  {
-    id: 'billboard-1',
-    title: 'Fashion Billboard',
-    category: 'billboard',
-    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=600&fit=crop',
+    id: 'residential-2',
+    title: 'Contemporary House Build',
+    category: 'residential',
+    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=600&fit=crop',
   },
   {
-    id: 'billboard-2',
-    title: 'City Billboard',
-    category: 'billboard',
-    image: 'https://images.unsplash.com/photo-1533073526757-2c8ca1df9f1c?w=800&h=600&fit=crop',
+    id: 'condo-1',
+    title: 'Condo Full Renovation',
+    category: 'condo-renovation',
+    image: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop',
   },
   {
-    id: 'billboard-3',
-    title: 'Highway Billboard',
-    category: 'billboard',
-    image: 'https://images.unsplash.com/photo-1524634126442-357e0eac3c14?w=800&h=600&fit=crop',
+    id: 'condo-2',
+    title: 'Studio Unit Renovation',
+    category: 'condo-renovation',
+    image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop',
   },
   {
-    id: 'billboard-4',
-    title: 'Urban Billboard',
-    category: 'billboard',
-    image: 'https://images.unsplash.com/photo-1588508065123-287b28e013da?w=800&h=600&fit=crop',
+    id: 'kiosk-1',
+    title: 'Mall Retail Kiosk',
+    category: 'mall-kiosk',
+    image: 'https://images.unsplash.com/photo-1555421689-d68471e189f2?w=800&h=600&fit=crop',
+  },
+  {
+    id: 'office-1',
+    title: 'Corporate Office Partition',
+    category: 'office-furniture',
+    image: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=800&h=600&fit=crop',
   },
 ]
 
-export const MACHINES = [
+export const TOOLS = [
   {
-    id: 'machine-1',
-    name: 'HP Latex Printer',
-    image: 'https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=800&h=800&fit=crop&q=80',
+    id: 'tool-1',
+    name: 'Precision Measuring Tools',
+    image: 'https://images.unsplash.com/photo-1504148455328-c376907d081c?w=800&h=800&fit=crop&q=80',
   },
   {
-    id: 'machine-2',
-    name: 'Roland VersaCAMM',
-    image: 'https://images.unsplash.com/photo-1563906267088-b029e7101114?w=800&h=800&fit=crop&q=80',
+    id: 'tool-2',
+    name: 'Power Drill & Driver',
+    image: 'https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=800&h=800&fit=crop&q=80',
   },
   {
-    id: 'machine-3',
-    name: 'Mimaki CJV300',
+    id: 'tool-3',
+    name: 'Circular Saw',
+    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=800&fit=crop&q=80',
+  },
+  {
+    id: 'tool-4',
+    name: 'Welding Equipment',
+    image: 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800&h=800&fit=crop&q=80',
+  },
+  {
+    id: 'tool-5',
+    name: 'Concrete Mixer',
+    image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&h=800&fit=crop&q=80',
+  },
+  {
+    id: 'tool-6',
+    name: 'Tile Cutter',
     image: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&h=800&fit=crop&q=80',
   },
   {
-    id: 'machine-4',
-    name: 'Zund Cutting System',
+    id: 'tool-7',
+    name: 'Scaffolding System',
+    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=800&fit=crop&q=80',
+  },
+  {
+    id: 'tool-8',
+    name: 'Level & Alignment Tools',
     image: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&h=800&fit=crop&q=80',
-  },
-  {
-    id: 'machine-5',
-    name: 'UV Flatbed Printer',
-    image: 'https://images.unsplash.com/photo-1588508065123-287b28e013da?w=800&h=800&fit=crop&q=80',
-  },
-  {
-    id: 'machine-6',
-    name: 'Digital Cutting Plotter',
-    image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800&h=800&fit=crop&q=80',
-  },
-  {
-    id: 'machine-7',
-    name: 'Laminating Machine',
-    image: 'https://images.unsplash.com/photo-1581092918484-8313e1f7e8c7?w=800&h=800&fit=crop&q=80',
-  },
-  {
-    id: 'machine-8',
-    name: 'Heat Press System',
-    image: 'https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=800&h=800&fit=crop&q=80',
-  },
-  {
-    id: 'machine-9',
-    name: 'Eco Solvent Printer',
-    image: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=800&h=800&fit=crop&q=80',
-  },
-  {
-    id: 'machine-10',
-    name: 'CNC Router',
-    image: 'https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=800&h=800&fit=crop&q=80',
-  },
-  {
-    id: 'machine-11',
-    name: 'Sublimation Printer',
-    image: 'https://images.unsplash.com/photo-1581092921461-eab62e97a780?w=800&h=800&fit=crop&q=80',
-  },
-  {
-    id: 'machine-12',
-    name: 'Vinyl Cutter',
-    image: 'https://images.unsplash.com/photo-1581092583537-20d51876f3e5?w=800&h=800&fit=crop&q=80',
   },
 ]
 
 export const ABOUT_CONTENT = {
-  title: 'About PBOX Creative',
+  title: 'About PBOX Construction',
   description:
-    'PBOX Creative Advertising is a full-service creative agency specializing in large format printing, signage, and brand identity solutions. With over a decade of experience, we combine cutting-edge technology with artistic excellence to deliver impactful visual communications that make your brand stand out.',
+    'PBOX Construction is a PCAB and PHILGEPS registered construction company based in Marikina, Metro Manila. We specialize in residential, commercial, and industrial construction projects — delivering quality craftsmanship, on-time completion, and transparent project management.',
   mission:
-    'Our mission is to transform your creative vision into tangible reality through innovative design, premium materials, and meticulous craftsmanship. We believe that every project, regardless of size, deserves the same level of dedication and attention to detail.',
-  image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1200&h=800&fit=crop',
+    'Our mission is to build spaces that stand the test of time. From modular kitchens to full-scale residential homes and commercial fit-outs, we bring your vision to life with precision engineering, premium materials, and a dedicated team of licensed professionals.',
+  image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&h=800&fit=crop',
   imageAlt:
-    'PBOX Creative Advertising team working on premium signage and branding projects in modern production facility',
+    'PBOX Construction team working on a residential and commercial construction project in Metro Manila',
 }
 
 export const TESTIMONIALS = [
   {
     id: 1,
     quote:
-      'PBOX transformed our brand identity with exceptional creativity and professionalism. Their attention to detail and commitment to quality exceeded our expectations.',
-    author: 'Sarah Johnson',
-    role: 'Marketing Director, TechCorp',
+      'PBOX Construction delivered our condo renovation on time and within budget. The quality of their work is outstanding — every detail was handled with care and professionalism.',
+    author: 'Maria Santos',
+    role: 'Homeowner, Quezon City',
     avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop',
     rating: 5,
   },
   {
     id: 2,
     quote:
-      'Outstanding service from start to finish. The team at PBOX delivered our signage project ahead of schedule and the quality was impeccable. Highly recommended!',
-    author: 'Michael Chen',
-    role: 'CEO, Urban Retail Group',
+      'We hired PBOX for our office fit-out and they exceeded our expectations. The team was professional, the workmanship was excellent, and they finished ahead of schedule.',
+    author: 'James Reyes',
+    role: 'Business Owner, Makati',
     avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop',
     rating: 5,
   },
   {
     id: 3,
     quote:
-      'Working with PBOX was a game-changer for our restaurant branding. They understood our vision perfectly and brought it to life with stunning designs.',
-    author: 'Emily Rodriguez',
-    role: 'Owner, Bella Vista Restaurant',
+      'Our modular kitchen from PBOX is exactly what we dreamed of. The design team listened to every detail and the installation was clean and precise. Highly recommended!',
+    author: 'Ana Dela Cruz',
+    role: 'Homeowner, Marikina',
     avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop',
     rating: 5,
   },
   {
     id: 4,
     quote:
-      'Professional, creative, and reliable. PBOX has been our go-to partner for all printing and branding needs for over 3 years. They never disappoint.',
-    author: 'David Thompson',
-    role: 'Brand Manager, FitLife Gyms',
+      'PBOX handled our mall kiosk construction from design to turnover. Fast, reliable, and the output was exactly what we needed to attract customers. Will definitely work with them again.',
+    author: 'Carlo Mendoza',
+    role: 'Retail Business Owner',
     avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop',
     rating: 5,
   },
@@ -325,31 +267,27 @@ export const TESTIMONIALS = [
 export const TESTIMONIAL = TESTIMONIALS[0]
 
 export const COMPANY_INFO = {
-  email: 'hello@pboxcreative.com',
-  phone: '+1 (555) 123-4567',
-  address: '123 Creative Avenue, Design District, NY 10001',
-  mapEmbedUrl: 'https://www.google.com/maps/embed?pb=...',
+  email: 'pboxconstruction@gmail.com',
+  phone: '+63 917 123 4567',
+  address: '14 M. L. Quezon Street, Marikina, Metro Manila, Philippines',
+  mapEmbedUrl:
+    'https://www.google.com/maps?q=14+M.+L.+Quezon+Street,+Marikina,+Metro+Manila,+Philippines&output=embed&z=17',
 }
 
 export const SOCIAL_LINKS = [
   {
     icon: 'Facebook',
-    href: 'https://facebook.com/pboxcreative',
+    href: 'https://facebook.com/pboxconstruction',
     label: 'Facebook',
   },
   {
     icon: 'Instagram',
-    href: 'https://instagram.com/pboxcreative',
+    href: 'https://instagram.com/pboxconstruction',
     label: 'Instagram',
   },
-  {
-    icon: 'Twitter',
-    href: 'https://twitter.com/pboxcreative',
-    label: 'Twitter',
-  },
-  {
-    icon: 'Linkedin',
-    href: 'https://linkedin.com/company/pboxcreative',
-    label: 'LinkedIn',
-  },
+]
+
+export const CERTIFICATIONS = [
+  { label: 'PCAB Registered', icon: 'ShieldCheck' },
+  { label: 'PHILGEPS Registered', icon: 'BadgeCheck' },
 ]
